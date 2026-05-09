@@ -1,0 +1,37 @@
+#title-cs {
+    text-align: end;
+    padding-right: 2%;
+    margin-left: 8%;
+    width: 40%;
+}
+#title-shop {
+    text-align: start;
+    padding-left: 2%;
+    margin-right: 2%;
+    width: 40%;
+}
+#div-nav {
+    width: 30%;
+    padding: 1%;
+    margin-top: 2%;
+    margin-left: 35%;
+}
+#div-main {
+    width: 80%;
+    padding: 2%;
+    margin-left: 8%;
+}
+.div-row-flow {
+    display: flex;
+    justify-items: center;
+    flex-flow: row;
+}
+body {
+    display: flex;
+    justify-items: center;
+    flex-flow: column;
+    text-align: center;
+}
+hr {
+    width: 40%;
+}
