@@ -1,38 +1,55 @@
 #title-cs {
-    font-size: 120%;
+    font-size: 140%;
     font-family: 'Modern No. 20', 'Times New Roman', 'Arial';
-    background-color: rgba(40, 40, 40, 0.800);
-    color: rgba(222, 222, 222, 0.800);
+    background: linear-gradient(to left, #bb815d, #e8d5c9);
+    color: #d2ab93;
     border-right-style: solid;
-    border-image: linear-gradient(to bottom, rgb(40, 40, 40), rgb(222, 222, 222)) 1;
+    border-image: linear-gradient(to bottom, #bb815d, #d2ab93) 1;
 }
 #title-shop {
-    font-size: 120%;
+    font-size: 140%;
     font-family: 'Modern No. 20', 'Times New Roman', 'Arial';
-    background-color: rgba(200, 200, 200, 0.800);
-    color: rgba(40, 40, 40, 0.800);
+    background: linear-gradient(to right, #d2ab93, #e8d5c9);
+    color: #bb815d;
     border-left-style: solid;
-    border-image: linear-gradient(to bottom, rgb(40, 40, 40), rgba(222, 222, 222, 0.800)) 1;
+    border-image: linear-gradient(to bottom, #bb815d, #d2ab93) 1;
 }
-#div-nav {
-    background-color: rgba(255, 255, 255, 0);
+#div-line {
+    border-bottom: 2px solid #e1c7b7;
 }
 #div-main {
-    background-color: rgb(255, 255, 255);
+    background-color: #f7f1ed;
+}
+#div-footer {
+    background-color: #d9b9a5;
 }
 .nav-button {
-    font-size: large;
+    font-size: 120%;
     font-family: 'Modern No. 20', 'Times New Roman', 'Arial';
-    background-color: rgba(255, 255, 255, 0);
-    color: rgb(48, 48, 48);
+    background-color: #e7d2c5;
+    color: #6c452d;
     border-style: none;
 }
+.div-img {
+    background-color: #f0e3db;
+    border-top: 5px solid #f0e3db;
+}
 body {
-    background-color: rgb(242, 242, 242);
+    background-color: #e7d2c5;
 }
 h1 {
-    color: rgb(50, 50, 50);
+    color: #6c452d;
 }
-h6 {
+h2 {
+    font-size: 60%;
     font-family: 'Times New Roman', 'Modern No. 20', 'Arial';
+}
+h3 {
+    color: #24170f
+}
+p {
+    color: #362317;
+}
+a {
+    color: #24170f;
 }

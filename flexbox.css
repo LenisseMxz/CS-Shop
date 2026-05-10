@@ -1,27 +1,41 @@
 #title-cs {
+    width: 40%;
     text-align: end;
     padding-right: 2%;
     margin-left: 8%;
-    width: 40%;
 }
 #title-shop {
+    width: 40%;
     text-align: start;
     padding-left: 2%;
     margin-right: 2%;
-    width: 40%;
 }
 #div-nav {
-    width: 30%;
+    width: 40%;
     padding: 1%;
     margin-top: 2%;
-    margin-left: 35%;
+    margin-left: 29%;
+}
+#div-line {
+    width: 50%;
+    margin-left: 25%;
 }
 #div-main {
-    width: 80%;
+    width: 95%;
     padding: 2%;
-    margin-left: 8%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 0.5%;
 }
-.div-row-flow {
+#img-front-page {
+    width: 40%;
+}
+#div-footer {
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+.row {
     display: flex;
     justify-items: center;
     flex-flow: row;
@@ -32,6 +46,6 @@ body {
     flex-flow: column;
     text-align: center;
 }
-hr {
-    width: 40%;
+h1 {
+    margin-bottom: -1%;
 }
