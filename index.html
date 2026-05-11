@@ -6,6 +6,7 @@
     <title>CS Shop</title>
     <link rel="stylesheet" href="flexbox.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="effects.css">
     <!--Añadir icono-->
 </head>
 <body>
@@ -22,13 +23,11 @@
         </div>
     </header>
     <nav>
-        <div class="row">
-            <div id="div-nav">
-                <button class="nav-button">Home</button>
-                <button class="nav-button">Products</button>
-                <button class="nav-button">Shopping Cart</button>
-                <button class="nav-button">MyAccount</button>
-            </div>
+        <div id="div-nav">
+            <button id="btn-home" class="nav-buttons">Home</button>
+            <button id="btn-product" class="nav-buttons">Products</button>
+            <button id="btn-shopcart" class="nav-buttons">Shopping Cart</button>
+            <button id="btn-account" class="nav-buttons">My Account</button>
         </div>
     </nav>
     <main>
@@ -37,7 +36,11 @@
             <h3>Welcome to CS Shop</h3>
             <p>Wanna be pretty? in CS Shop you can find a wide variety of high-quality beauty products.</p>
             <div class="div-img">
-                <img id="img-front-page" src="./media/Front-page.jpeg" alt="Front page">
+                <div class="row">
+                    <button id="btn-left-slide" class="btn-slide"><</button>
+                    <img id="img-front-page" src="./media/Front-page1.jpeg" alt="Front page">
+                    <button id="btn-right-slide" class="btn-slide">></button>
+                </div>
             </div>
         </div>
     </main>
@@ -47,4 +50,5 @@
         </div>
     </footer>
 </body>
+<script src="index.js"></script>
 </html>

@@ -1,0 +1,14 @@
+.nav-buttons:hover {
+    background-color: #e1c7b7;
+}
+.nav-buttons:active {
+    background-color: #e7d2c5;
+}
+.btn-slide:hover {
+    background-color: #e7d2c5;
+    color: #6c452d;
+}
+.btn-slide:active {
+    background-color: #e7d2c5;
+    color: #6c452d;
+}

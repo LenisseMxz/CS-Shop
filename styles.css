@@ -23,7 +23,7 @@
 #div-footer {
     background-color: #d9b9a5;
 }
-.nav-button {
+.nav-buttons {
     font-size: 120%;
     font-family: 'Modern No. 20', 'Times New Roman', 'Arial';
     background-color: #e7d2c5;
@@ -33,6 +33,13 @@
 .div-img {
     background-color: #f0e3db;
     border-top: 5px solid #f0e3db;
+}
+.btn-slide {
+    font-size: 120%;
+    font-family: 'Modern No. 20', 'Times New Roman', 'Arial';
+    background-color: #f0e3db;
+    color: #f0e3db;
+    border-style: none;
 }
 body {
     background-color: #e7d2c5;
