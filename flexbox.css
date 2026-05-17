@@ -1,3 +1,12 @@
+#div-message {
+    visibility: hidden;
+    position: fixed; 
+    top: 2%; 
+    left: 30%; 
+    padding: 0.2%; 
+    width: 40%; 
+    background-color: #e7d2c5a3;
+}
 #title-cs {
     width: 40%;
     text-align: end;
@@ -42,10 +51,20 @@
     justify-items: center;
     flex-flow: row;
 }
+.row-wrap {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
 .btn-slide {
     width: 50%;
     margin-top: 20%;
     margin-bottom: 20%;
+}
+.input-products {
+    width: 12%;
 }
 body {
     display: flex;

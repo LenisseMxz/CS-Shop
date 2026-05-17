@@ -37,6 +37,15 @@
     color: #f0e3db;
     border-style: none;
 }
+.btn-others {
+    background-color: #e7d2c5;
+    color: #6c452d;
+    border-style: none;
+}
+.input-products {
+    border-width: 1px;
+    border-color: #6c452d;
+}
 body {
     background-color: #e7d2c5;
 }
