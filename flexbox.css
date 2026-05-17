@@ -26,9 +26,10 @@
     margin-bottom: 2%;
 }
 #img-front-page {
-    width: 40%;
-    margin-right: 25%;
-    margin-left: 25%;
+    width: 50%;
+    height: 50%;
+    margin-right: 20%;
+    margin-left: 20%;
 }
 #div-footer {
     width: 100%;
@@ -43,8 +44,8 @@
 }
 .btn-slide {
     width: 50%;
-    height: 80px;
-    margin-top: 25%;
+    margin-top: 20%;
+    margin-bottom: 20%;
 }
 body {
     display: flex;

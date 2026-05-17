@@ -1,6 +1,5 @@
 #title-cs {
     font-size: 140%;
-    font-family: 'Modern No. 20', 'Times New Roman', 'Arial';
     background: linear-gradient(to left, #bb815d, #e8d5c9);
     color: #d2ab93;
     border-right-style: solid;
@@ -8,7 +7,6 @@
 }
 #title-shop {
     font-size: 140%;
-    font-family: 'Modern No. 20', 'Times New Roman', 'Arial';
     background: linear-gradient(to right, #d2ab93, #e8d5c9);
     color: #bb815d;
     border-left-style: solid;
@@ -25,7 +23,6 @@
 }
 .nav-buttons {
     font-size: 120%;
-    font-family: 'Modern No. 20', 'Times New Roman', 'Arial';
     background-color: #e7d2c5;
     color: #6c452d;
     border-style: none;
@@ -36,7 +33,6 @@
 }
 .btn-slide {
     font-size: 120%;
-    font-family: 'Modern No. 20', 'Times New Roman', 'Arial';
     background-color: #f0e3db;
     color: #f0e3db;
     border-style: none;
@@ -49,7 +45,6 @@ h1 {
 }
 h2 {
     font-size: 60%;
-    font-family: 'Times New Roman', 'Modern No. 20', 'Arial';
 }
 h3 {
     color: #24170f
