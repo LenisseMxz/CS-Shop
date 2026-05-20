@@ -20,18 +20,30 @@
 #main {
     background-color: #f7f1ed;
 }
+#home-frame {
+    background-color: #f0e3db;
+    border: 5px solid #f0e3db;
+}
 #home-footer {
     background-color: #d9b9a5;
 }
-.nav-buttons {
+#sc-main-frame {
+    background-color: #f0e3db;
+    border: 5px solid #f0e3db;
+}
+#sc-secondary-frame {
+    background-color: #e8d5c9;
+    border: 5px solid #e8d5c9;
+}
+.btn-nav {
     font-size: 120%;
     background-color: #e7d2c5;
     color: #6c452d;
     border-style: none;
 }
-.div-home-img {
+.div-products {
     background-color: #f0e3db;
-    border-top: 5px solid #f0e3db;
+    border: 5px solid #f0e3db
 }
 .input-products {
     border-width: 1px;

@@ -64,7 +64,8 @@
     flex-wrap: wrap;
 }
 .div-products {
-    width: 30%;
+    width: 25%;
+    margin: 2%;
 }
 .img-products {
     width: 50%
