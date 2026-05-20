@@ -1,4 +1,4 @@
-#div-message {
+#product-message {
     visibility: hidden;
     position: fixed; 
     top: 2%; 
@@ -7,43 +7,48 @@
     width: 40%; 
     background-color: #e7d2c5a3;
 }
-#title-cs {
+#home-title-cs {
     width: 40%;
     text-align: end;
     padding-right: 2%;
     margin-left: 2%;
 }
-#title-shop {
+#home-title-shop {
     width: 40%;
     text-align: start;
     padding-left: 2%;
     margin-right: 2%;
 }
-#div-nav {
+#home-nav {
     width: 50%;
     padding: 1%;
     margin-top: 2%;
     margin-left: 23%;
 }
-#div-line {
+#home-line {
     width: 50%;
     margin-left: 23%;
 }
-#div-main {
+#main {
     padding: 2%;
     margin-top: 2%;
     margin-bottom: 2%;
 }
-#img-front-page {
+#home-img {
     width: 50%;
     height: 50%;
     margin-right: 20%;
     margin-left: 20%;
 }
-#div-footer {
+#home-footer {
     width: 100%;
     padding-top: 2%;
     padding-bottom: 2%;
+}
+#sc-image {
+    width: 4rem; 
+    height: 4rem; 
+    margin: 2%
 }
 .row {
     display: flex;
@@ -58,13 +63,20 @@
     flex-flow: row;
     flex-wrap: wrap;
 }
-.btn-slide {
-    width: 50%;
-    margin-top: 20%;
-    margin-bottom: 20%;
+.div-products {
+    width: 30%;
+}
+.img-products {
+    width: 50%
 }
 .input-products {
     width: 12%;
+}
+.div-sc-main {
+    width: auto; 
+    border-style: solid; 
+    border-left: 1px; 
+    border-right: 1px
 }
 body {
     display: flex;
