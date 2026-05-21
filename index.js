@@ -6,6 +6,7 @@ let main = document.getElementById("main");
 const btnProducts = document.getElementById("btn-products");
 const btnHome = document.getElementById("btn-home");
 const btnShoppingCart = document.getElementById("btn-shoppingcart");
+const btnAccount = document.getElementById("btn-account");
 
 // Función de añadir al carrito
 function add(id, price) {
