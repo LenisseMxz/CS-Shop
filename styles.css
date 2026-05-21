@@ -1,3 +1,4 @@
+/* Personalización de la página */
 #home-title-cs {
     font-size: 140%;
     font-family:'Times New Roman', Times, serif;
@@ -31,9 +32,13 @@
     background-color: #f0e3db;
     border: 5px solid #f0e3db;
 }
+#sc-main-text {
+    border-width: 1px;
+    border-color: #6c452d;
+}
 #sc-secondary-frame {
     background-color: #e8d5c9;
-    border: 5px solid #e8d5c9;
+    border: 8px solid #e8d5c9;
 }
 .btn-nav {
     font-size: 120%;
@@ -56,6 +61,10 @@
 }
 .text-sc-content {
     font-size: 80%;
+}
+.btn-sc {
+    background-color: #e8d5c9;
+    border: 1px solid #24170f;
 }
 body {
     font-family:'centaur', 'Times New Roman', Times, serif;

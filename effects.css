@@ -1,6 +1,19 @@
+/* Efectos de la página */
 .btn-nav:hover {
     background-color: #e1c7b7;
 }
 .btn-nav:active {
     background-color: #e7d2c5;
+}
+.btn-products:hover {
+    background-color: #e1c7b7;
+}
+.btn-products:active {
+    background-color: #e7d2c5;
+}
+.btn-sc:hover {
+    background-color: #e1c7b7;
+}
+.btn-sc:active {
+    background-color: #e8d5c9;
 }
