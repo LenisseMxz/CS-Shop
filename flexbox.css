@@ -42,7 +42,6 @@
     margin-left: 20%;
 }
 #home-footer {
-    width: 100%;
     padding-top: 2%;
     padding-bottom: 2%;
 }
@@ -54,6 +53,9 @@
 #sc-main-text {
     margin-right: 10%;
     margin-left: 6%;
+}
+#sc-secondary-frame {
+   padding-bottom: 2%;
 }
 .row {
     display: flex;
@@ -84,11 +86,17 @@
     border-left: 1px; 
     border-right: 1px
 }
-.sc-input-products {
+.input-sc {
     width: 4%;
     height: 20%;
     margin-top: 4%;
 
+}
+.btn-account {
+    margin: 1%;
+}
+.div-account-container {
+    margin: 2%;
 }
 body {
     display: flex;

@@ -40,6 +40,9 @@
     background-color: #e8d5c9;
     border: 8px solid #e8d5c9;
 }
+#account-secondary-frame {
+    background-color: #e8d5c9;
+}
 .btn-nav {
     font-size: 120%;
     background-color: #e7d2c5;
@@ -62,9 +65,21 @@
 .text-sc-content {
     font-size: 80%;
 }
+.input-sc {
+    border-width: 1px;
+    border-color: #6c452d;
+}
 .btn-sc {
     background-color: #e8d5c9;
     border: 1px solid #24170f;
+}
+.btn-account {
+    background-color: #f7f1ed;
+    border: 1px solid #24170f;
+}
+.input-account {
+    border-width: 1px;
+    border-color: #6c452d;
 }
 body {
     font-family:'centaur', 'Times New Roman', Times, serif;
@@ -89,5 +104,8 @@ p {
     color: #362317;
 }
 a {
+    color: #24170f;
+}
+input {
     color: #24170f;
 }
