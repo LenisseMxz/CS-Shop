@@ -17,3 +17,9 @@
 .btn-sc:active {
     background-color: #e8d5c9;
 }
+.btn-account:hover {
+    background-color: #f0e3db;
+}
+.btn-account:active {
+    background-color: #f7f1ed;
+}

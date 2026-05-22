@@ -1,3 +1,5 @@
+// *USAR TOKEN PARA FETCH*
+// CAMBIAR POSICION DE INPUTS DEL CONTENIDO AL CENTRO Y AÑADIR CANCELACION DE PRODUCTO EN CARRITO !!!
 // Divs principales
 let message = document.getElementById("message");
 let main = document.getElementById("main");
@@ -10,9 +12,9 @@ const btnAccount = document.getElementById("btn-account");
 
 // Función de añadir al carrito
 function add(id, price) {
-    let productId = id;
-    let productQuantity = document.getElementById("product-quantity").value;
-    let productPrice = price;
+    const productId = id;
+    const productQuantity = document.getElementById("product-quantity").value;
+    const productPrice = price;
 
     // fetch POST
 
@@ -41,6 +43,41 @@ function add(id, price) {
         message.innerHTML = "";
         message.style.visibility = "hidden";
     }, 3500)
+}
+
+// Función para acceder
+function login() {
+    main.innerHTML = "";
+    main.innerHTML += `<div id="account-main-frame">
+                            <div class="div-account-container">
+                                <label>Username: </label>
+                                <input type="text" id="username" class="input-account" name="username"></input>
+                            </div>
+                            <div class="div-account-container">
+                                <label>Password: </label>
+                                <input type="password" id="password" class="input-account" name="password"></input>
+                            </div>
+                            <button type="button" id="btn-login" class="btn-account">Login</button>
+                        </div>
+                        `;
+
+    const btnLogin = document.getElementById("btn-login");
+
+    btnLogin.addEventListener("click", () => {
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
+
+        // fetch POST 
+
+        main.innerHTML = "";
+        main.innerHTML += `<div id="account-main-frame">
+                            <h3>Me</h3>
+                        </div>
+                        <div id="account-secondary-frame">
+                            <h4>Historial de pedidos</h4>
+                        </div>
+                        `;
+    })
 }
 
 // Botón de página principal
@@ -90,7 +127,7 @@ btnShoppingCart.addEventListener("click", () => {
                                     <h5>${"My Foundation"}</h5>
                                     <p class="text-sc-content">${"Expensive Foundation"}</p>
                                 </div>
-                                <input type="number" id="sc-quantity" class="sc-input-products" name="scQuantity" min="1" max="5"></input>
+                                <input type="number" id="sc-quantity" class="input-sc" name="sc-quantity" min="1" max="5"></input>
                             </div>
                         </div>
                         <div id="sc-secondary-frame">
@@ -101,3 +138,13 @@ btnShoppingCart.addEventListener("click", () => {
                         `;
 })
 
+btnAccount.addEventListener("click", () => {
+    // fetch POST
+    main.removeAttribute("class");
+    main.innerHTML = "";
+    main.innerHTML += `<div id="account-main-frame">
+                            <button type="Button" onclick="login()" class="btn-account">Login</button>
+                            <button type="Button" onclick="register()" class="btn-account">Register</button>
+                        </div>
+                        `;
+})
