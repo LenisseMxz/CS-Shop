@@ -78,7 +78,7 @@ function login() {
                             <h3>${"Me"}</h3>
                         </div>
                         <div id="account-secondary-frame">
-                            <h4>Historial de pedidos</h4>
+                            <h4>Order History</h4>
                         </div>
                         `;
     })
@@ -118,7 +118,7 @@ function register() {
                             <h3>${"Me"}</h3>
                         </div>
                         <div id="account-secondary-frame">
-                            <h4>Historial de pedidos</h4>
+                            <h4>Order History</h4>
                         </div>
                         `;
     })
