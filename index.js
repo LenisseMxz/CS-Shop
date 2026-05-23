@@ -1,5 +1,4 @@
 // *USAR TOKEN PARA FETCH*
-// CAMBIAR POSICION DE INPUTS DEL CONTENIDO AL CENTRO Y AÑADIR CANCELACION DE PRODUCTO EN CARRITO !!!
 // Divs principales
 let message = document.getElementById("message");
 let main = document.getElementById("main");
@@ -45,8 +44,15 @@ function add(id, price) {
     }, 3500)
 }
 
+// Función para cancelar
+function cancel(id) {
+    // fetch DELETE
+    document.getElementById(`${1}`).remove();
+}
+
 // Función para acceder
 function login() {
+    // fetch POST + fetch GET
     main.innerHTML = "";
     main.innerHTML += `<div id="account-main-frame">
                             <div class="div-account-container">
@@ -67,11 +73,49 @@ function login() {
         const username = document.getElementById("username");
         const password = document.getElementById("password");
 
-        // fetch POST 
+        main.innerHTML = "";
+        main.innerHTML += `<div id="account-main-frame">
+                            <h3>${"Me"}</h3>
+                        </div>
+                        <div id="account-secondary-frame">
+                            <h4>Historial de pedidos</h4>
+                        </div>
+                        `;
+    })
+}
+
+function register() {
+    // fetch POST + GET
+    main.innerHTML = "";
+    main.innerHTML += `<div id="account-main-frame">
+                            <div class="div-account-container">
+                                <label>Username: </label>
+                                <input type="text" id="username" class="input-account" name="username"></input>
+                            </div>
+                            <div class="div-account-container">
+                                <label>Password: </label>
+                                <input type="password" id="password" class="input-account" name="password"></input>
+                            </div>
+                            <div class="div-account-container">
+                                <label>Repeat Password: </label>
+                                <input type="password" id="password" class="input-account" name="password"></input>
+                            </div>
+                            <button type="button" id="btn-register" class="btn-account">Register</button>
+                        </div>
+                        `;
+
+    const btnRegister = document.getElementById("btn-register");
+
+    btnRegister.addEventListener("click", () => {
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
+        const repeatPassword = document.getElementById("repeatPassword");
+
+        // fetch POST + fetch GET
 
         main.innerHTML = "";
         main.innerHTML += `<div id="account-main-frame">
-                            <h3>Me</h3>
+                            <h3>${"Me"}</h3>
                         </div>
                         <div id="account-secondary-frame">
                             <h4>Historial de pedidos</h4>
@@ -82,7 +126,6 @@ function login() {
 
 // Botón de página principal
 btnHome.addEventListener("click", () => {
-    main.removeAttribute("class");
     main.innerHTML = "";
     main.innerHTML = `
                         <h3>Welcome to CS Shop</h3>
@@ -100,47 +143,60 @@ btnProducts.addEventListener("click", () => {
     // .then(products => {
     //     products.forEach(product => {})
     // })
-
-    main.setAttribute("class", "row-wrap");
     main.innerHTML = "";
-    main.innerHTML += `
-                    <div class="div-products">
-                        <h4>${"My Foundation"}</h4>
-                        <img class="img-products" src=${"./media/Foundation.jpeg"} alt=${"My Foundation"}>
-                        <p>${"$20"}</p>
-                        <p>${"Expensive Foundation"}</p>
-                        <input type="number" id="product-quantity" class="input-products" name="product-quantity" min="1" max="5"></input>   
-                        <button type="button" onclick="add('product${1}', ${20})" class="btn-products">Add</button>
+    main.innerHTML += `                  
+                    <input type="text" id="product-search" class="input-products" name="product-quantity" placeholder="Search product"></input>
+                    <div class="row-wrap">
+                        <div class="div-products">
+                            <h4>${"My Foundation"}</h4>
+                            <img class="img-products" src=${"./media/Foundation.jpeg"} alt=${"My Foundation"}>
+                            <p>${"$20"}</p>
+                            <p>${"Expensive Foundation"}</p>
+                            <input type="number" id="product-quantity" class="input-products" name="product-quantity" value="1" min="1"></input>   
+                            <button type="button" onclick="add(${1}, ${20})" class="btn-products">Add</button>
+                        </div>
                     </div>
                     `;
-})
 
+    const inputSearch = document.getElementById("product-search");
+
+    inputSearch.addEventListener("input", (e) => {
+        // fetch PATCH
+        console.log(e.target.value);
+    })
+})
 // Botón de carrito de compra
 btnShoppingCart.addEventListener("click", () => {
     // fetch GET
     main.removeAttribute("class");
     main.innerHTML = "";
     main.innerHTML += `<div id="sc-main-frame">
-                            <div class="row">
+                            <div id=${1} class="row">
                                 <img id="sc-image" src=${"./media/Foundation.jpeg"} alt=${"My Foundation"}>
                                 <div id="sc-main-text">
                                     <h5>${"My Foundation"}</h5>
                                     <p class="text-sc-content">${"Expensive Foundation"}</p>
                                 </div>
-                                <input type="number" id="sc-quantity" class="input-sc" name="sc-quantity" min="1" max="5"></input>
+                                <input type="number" id="sc-quantity" class="input-sc" name="sc-quantity" value=${"1"} min="1"></input>
+                                <button type="button" id="sc-main-cancel-button" class="btn-sc" onclick="cancel(${1})">X</button>
                             </div>
                         </div>
                         <div id="sc-secondary-frame">
                             <h3>Total</h3>
-                            <p>${"$20"}</p>
+                            <p id="total">${20}</p>
                             <button type="button" class="btn-sc">Buy</button>
                         </div>
                         `;
+
+    const inputQuantity = document.getElementById("sc-quantity");
+
+    inputQuantity.addEventListener("input", () => {
+        document.getElementById("total").innerHTML = 0;
+    })
 })
 
 btnAccount.addEventListener("click", () => {
     // fetch POST
-    main.removeAttribute("class");
     main.innerHTML = "";
     main.innerHTML += `<div id="account-main-frame">
                             <button type="Button" onclick="login()" class="btn-account">Login</button>
