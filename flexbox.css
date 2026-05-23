@@ -45,14 +45,22 @@
     padding-top: 2%;
     padding-bottom: 2%;
 }
+#product-search {
+    text-align: center;
+}
 #sc-image {
     width: 4rem; 
     height: 4rem; 
     margin: 2%
 }
 #sc-main-text {
-    margin-right: 10%;
+    margin-right: 6%;
     margin-left: 6%;
+}
+#sc-main-cancel-button {
+    width: 2%;
+    height: 4%;
+    margin-top: 4%;
 }
 #sc-secondary-frame {
    padding-bottom: 2%;
@@ -78,7 +86,7 @@
     width: 50%
 }
 .input-products {
-    width: 12%;
+    width: 14%;
 }
 .div-sc-main {
     width: auto; 
@@ -90,7 +98,7 @@
     width: 4%;
     height: 20%;
     margin-top: 4%;
-
+    margin-right: 60%;
 }
 .btn-account {
     margin: 1%;
