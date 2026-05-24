@@ -1,0 +1,90 @@
+#product-message {
+    visibility: hidden;
+    position: fixed; 
+    top: 2%; 
+    left: 30%; 
+    padding: 0.2%; 
+    width: 40%; 
+    background-color: #e7d2c5a3;
+}
+#home-title-cs {
+    width: 40%;
+    text-align: end;
+    padding-right: 2%;
+    margin-left: 2%;
+}
+#home-title-shop {
+    width: 40%;
+    text-align: start;
+    padding-left: 2%;
+    margin-right: 2%;
+}
+#home-nav {
+    width: 50%;
+    padding: 1%;
+    margin-top: 2%;
+    margin-left: 23%;
+}
+#home-line {
+    width: 50%;
+    margin-left: 23%;
+}
+#main {
+    padding: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+#home-img {
+    width: 50%;
+    height: 50%;
+    margin-right: 20%;
+    margin-left: 20%;
+}
+#home-footer {
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+#sc-image {
+    width: 4rem; 
+    height: 4rem; 
+    margin: 2%
+}
+.row {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex-flow: row;
+}
+.row-wrap {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+.div-products {
+    width: 25%;
+    margin: 2%;
+}
+.img-products {
+    width: 50%
+}
+.input-products {
+    width: 12%;
+}
+.div-sc-main {
+    width: auto; 
+    border-style: solid; 
+    border-left: 1px; 
+    border-right: 1px
+}
+body {
+    display: flex;
+    justify-items: center;
+    flex-flow: column;
+    text-align: center;
+}
+h1 {
+    margin-bottom: -1%;
+}

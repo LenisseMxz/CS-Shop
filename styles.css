@@ -1,0 +1,84 @@
+#home-title-cs {
+    font-size: 140%;
+    font-family:'Times New Roman', Times, serif;
+    background: linear-gradient(to left, #bb815d, #e8d5c9);
+    color: #d2ab93;
+    border-right-style: solid;
+    border-image: linear-gradient(to bottom, #bb815d, #d2ab93) 1;
+}
+#home-title-shop {
+    font-size: 140%;
+    font-family:'Times New Roman', Times, serif;
+    background: linear-gradient(to right, #d2ab93, #e8d5c9);
+    color: #bb815d;
+    border-left-style: solid;
+    border-image: linear-gradient(to bottom, #bb815d, #d2ab93) 1;
+}
+#home-line {
+    border-bottom: 2px solid #e1c7b7;
+}
+#main {
+    background-color: #f7f1ed;
+}
+#home-frame {
+    background-color: #f0e3db;
+    border: 5px solid #f0e3db;
+}
+#home-footer {
+    background-color: #d9b9a5;
+}
+#sc-main-frame {
+    background-color: #f0e3db;
+    border: 5px solid #f0e3db;
+}
+#sc-secondary-frame {
+    background-color: #e8d5c9;
+    border: 5px solid #e8d5c9;
+}
+.btn-nav {
+    font-size: 120%;
+    background-color: #e7d2c5;
+    color: #6c452d;
+    border-style: none;
+}
+.div-products {
+    background-color: #f0e3db;
+    border: 5px solid #f0e3db
+}
+.input-products {
+    border-width: 1px;
+    border-color: #6c452d;
+}
+.btn-products {
+    background-color: #e7d2c5;
+    color: #6c452d;
+    border-style: none;
+}
+.text-sc-content {
+    font-size: 80%;
+}
+body {
+    font-family:'centaur', 'Times New Roman', Times, serif;
+    background-color: #e7d2c5;
+}
+button {
+     font-family:'Times New Roman', Times, serif;
+}
+h1 {
+    color: #6c452d;
+}
+h2 {
+    font-size: 60%;
+}
+h3 {
+    color: #24170f
+}
+h5 {
+    color: #24170f;
+}
+p {
+    color: #362317;
+}
+a {
+    color: #24170f;
+}
