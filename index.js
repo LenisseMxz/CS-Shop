@@ -3,6 +3,9 @@
 let message = document.getElementById("message");
 let main = document.getElementById("main");
 
+// TOKEN
+let userToken = null;
+
 // Botones del navegador
 const btnProducts = document.getElementById("btn-products");
 const btnHome = document.getElementById("btn-home");
