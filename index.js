@@ -136,8 +136,14 @@ function login() {
                                 main.innerHTML += `
                                                     <div id="account-secondary-frame">
                                                         <h4>Order History</h4>
+                                                        <div class="row">
+                                                            <div id="sc-main-text">
+                                                                <h5>${"24-05-2026"}</h5>
+                                                                <p class="text-sc-content">$${450}</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    `; // DEBO AGREGAR EL DISEÑO DE LOS PEDIDOS AQUI XD
+                                                    `;
                             })
                         } else {
                             fetch("http://localhost:3000/api/orders", { // Falta ruta para crear un nuevo pedido
@@ -284,7 +290,7 @@ btnProducts.addEventListener("click", () => {
 })
 
 // Botón de carrito de compra
-btnShoppingCart.addEventListener("click", () => { // Necesito poder obtener mis productos del pedido actual
+btnShoppingCart.addEventListener("click", () => { // Necesito poder obtener mis productos del pedido actual. Supongo que se haria un obtener pedidos (el pedido actual) y de ahi los detalles del pedido.
     main.innerHTML = "";
     main.innerHTML += `<div id="sc-main-frame">
                             <div id=${1} class="row">

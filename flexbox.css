@@ -65,6 +65,9 @@
 #sc-secondary-frame {
    padding-bottom: 2%;
 }
+#account-secondary-frame {
+    padding: 0.5%;
+}
 .row {
     display: flex;
     justify-content: center;
