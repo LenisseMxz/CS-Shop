@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../lib/db.js');
 
-exports.register_post = (req, res) => {
+exports.register_post = async (req, res) => {
     const {user, password, confirmPassword} = req.body;  //obtenemos los datos que ingreso el usuario
 
         if(!user || !password || !confirmPassword){     //validamos que el usuario haya registrado los dos campos
@@ -22,9 +22,9 @@ exports.register_post = (req, res) => {
 }
 
 exports.login_post = async (req, res) => {
-    const {user, password} = req.body;  //obtenemos los datos que ingreso el usuario
+    const {useF, password} = req.body;  //obtenemos los datos que ingreso el usuario
 
-    if(!user || !password){     //validamos que el usuario haya registrado los dos campos
+    if(!userF || !password){     //validamos que el usuario haya registrado los dos campos
         return res.json({message: "llena todos los campos"}); 
     }
 
