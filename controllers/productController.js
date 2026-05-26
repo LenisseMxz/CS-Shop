@@ -18,16 +18,16 @@ exports.product_search = async (req, res) => { //esto es para buscar un producto
 
     const [rows] = await db.query(sql, [`%${name}%`]); //esto es para ejecutar la consulta y obtener el resultado, se usa % para que busque por coincidencia en cualquier parte del nombre
 
-    return res.json(rows); //esto es para enviar el resultado al cliente
+    return res.json(rows); //esto es para enviar el resultado al cliente en formato json
 };
 
 //para los admins
 exports.add_product = async (req, res) => {   //esto es para agregar un nuevo producto
-    const {id, name, price, qty, description} = req.body; //esto es para obtener los datos del nuevo producto que se quiere agregar
+    const {name, price, qty, description} = req.body; //esto es para obtener los datos del nuevo producto que se quiere agregar
 
-    const sql = "INSERT INTO products (id, name, price, qty, description) VALUES (?, ?, ?, ?, ?)"; //esto es para insertar el nuevo producto en la base de datos
+    const sql = "INSERT INTO products (name, price, qty, description) VALUES (?, ?, ?, ?)"; //esto es para insertar el nuevo producto en la base de datos
 
-    await db.query(sql, [id, name, price, qty, description]); //esto es para ejecutar la consulta y agregar el nuevo producto a la base de datos
+    await db.query(sql, [name, price, qty, description]); //esto es para ejecutar la consulta y agregar el nuevo producto a la base de datos
     
     return res.json({message: "producto agregado"});
 };

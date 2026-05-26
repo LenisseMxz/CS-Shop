@@ -3,15 +3,19 @@ const jwt = require('jsonwebtoken');
 const db = require('../lib/db.js');
 
 exports.register_post = (req, res) => {
-    const {id, user, password} = req.body;  //obtenemos los datos que ingreso el usuario
+    const {user, password, confirmPassword} = req.body;  //obtenemos los datos que ingreso el usuario
 
-        if(!id || !user || !password){     //validamos que el usuario haya registrado los dos campos
+        if(!user || !password || !confirmPassword){     //validamos que el usuario haya registrado los dos campos
             return res.json({message: "llena todos los campos"}); 
+        }
+
+        if(password !== confirmPassword){   //validamos que las contraseñas coincidan
+            return res.json({message: "las contraseñas no son iguales"});
         }
 
 
     const passwordHash = await bcrypt.hashSync(password, 10); //esto es para encriptar la contraseña, el 10 es el nivel de seguridad, entre mas alto, mas seguro pero tambien mas lento a lo que vi xd
-    const sql = "INSERT INTO users (id, user, password) VALUES (?, ?,?, 'customer')"; //esto es para insertar el nuevo usuario en la base de datos, con el rol de customer por defecto, aunque tengo duda de si poner lo de customer porque la db ya lo tiene por defecto, pero bueno xd, tengo que investigarlo
+    const sql = "INSERT INTO users (user, password, rol) VALUES (?, ?,'customer')"; //esto es para insertar el nuevo usuario en la base de datos, con el rol de customer por defecto, aunque tengo duda de si poner lo de customer porque la db ya lo tiene por defecto, pero bueno xd, tengo que investigarlo
 
     await db.query(sql, [user, passwordHash]); //esto es para insertar el nuevo usuario en la base de datos, con la contraseña encriptada
     return res.json({message: "usuario registrado"});
