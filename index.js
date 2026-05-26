@@ -5,12 +5,12 @@ const btnProducts = document.getElementById("btn-products");
 const btnHome = document.getElementById("btn-home");
 const btnShoppingCart = document.getElementById("btn-shoppingcart");
 
-function add(id, price) {
+
+async function add(id, price) {
     let productId = id;
     let productQuantity = document.getElementById("product-quantity").value;
     let productPrice = price;
 
-    // fetch POST
 
     productMessage.style.visibility = "visible";
     productMessage.innerHTML = `<p style="color: #362317";>${"The product has been added to the shopping cart"}</p>`;
