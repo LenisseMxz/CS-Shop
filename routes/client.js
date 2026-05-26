@@ -9,6 +9,6 @@ router.get('/products/search',verifyToken ,productController.product_search); //
 
 router.post('/orders', verifyToken, orderController.order_create_post); //ruta para crear una nueva orden, protegida por el middleware de autenticacion
 
-router.get('/orders', verifyToken, orderController.order_user_list); //ruta para mostrar las ordenes del usuario que esta haciendo la consulta, protegida por el middleware de autenticacion
+router.get('/orders/history', verifyToken, orderController.order_user_list); //ruta para mostrar las ordenes del usuario que esta haciendo la consulta, protegida por el middleware de autenticacion
 
 module.exports = router;
