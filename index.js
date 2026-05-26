@@ -1,6 +1,6 @@
 // Variables auxiliares
 let userToken = null;
-let userOrderId = null; // NO SE AUN xd
+let shoppingCart = [];
 
 // Divs principales
 let message = document.getElementById("message");
@@ -13,56 +13,43 @@ const btnShoppingCart = document.getElementById("btn-shoppingcart");
 const btnAccount = document.getElementById("btn-account");
 
 // Función de añadir al carrito
-function add(id, price) {
-    const productId = id;
-    const productQuantity = document.getElementById("product-quantity").value;
-    const productPrice = price;
+function add(name, price, description) {
+    quantity = document.getElementById("product-quantity").value;
 
-    // Añadir un producto al carrito
-    fetch("http://localhost:3000/api/order-details", { // Falta ruta para añadir el producto al pedido, supongo que a detalles de pedido ya que es producto por producto y este se enlaza al pedido en general
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${userToken}`, // Se envia el token para confirmar acción
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            orderId: userOrderId, // Lo manejo desde aqui para hacer referencia al pedido actual pero no se si haya otra forma xd help.
-            productId: productId,
-            quantity: productQuantity,
-            price: productPrice
-        })
-    })
-    .then(res => res.json())
-    .then(detail => {
-        console.log(detail);
-        if (detail == "Conseguido!") { // Si se añadió el producto
-            message.style.visibility = "visible";
-            message.innerHTML = `<p style="color: #362317";>${"The product has been added to the shopping cart"}</p>`;
+    const product = {
+        name: name,
+        price: price,
+        description: description,
+        quantity: quantity
+    };
 
-            message.animate([
-                {opacity: 0},
-                {opacity: 1}
-            ], {
-                duration: 500,
-                easing: "ease-in"
-            });
-            
-            setTimeout(() => {
-                message.animate([
-                    {opacity: 1},
-                    {opacity: 0}
-                ], {
-                    duration: 500,
-                    easing: "ease-out"
-                });
-            }, 3000);
+    shoppingCart.push(product);
 
-            setTimeout(() => {
-                message.innerHTML = "";
-                message.style.visibility = "hidden";
-            }, 3500);
-        }
+    message.style.visibility = "visible";
+    message.innerHTML = `<p style="color: #362317";>${"The product has been added to the shopping cart"}</p>`;
+
+    message.animate([
+        {opacity: 0},
+        {opacity: 1}
+    ], {
+        duration: 500,
+        easing: "ease-in"
     });
+    
+    setTimeout(() => {
+        message.animate([
+            {opacity: 1},
+            {opacity: 0}
+        ], {
+            duration: 500,
+            easing: "ease-out"
+        });
+    }, 3000);
+
+    setTimeout(() => {
+        message.innerHTML = "";
+        message.style.visibility = "hidden";
+    }, 3500);
 }
 
 // Función para acceder
@@ -231,7 +218,7 @@ btnProducts.addEventListener("click", () => {
                                                 <p>${product.price}</p>
                                                 <p>${product.description}</p>
                                                 <input type="number" id="product-quantity" class="input-products" name="product-quantity" value="1" min="1"></input>   
-                                                <button type="button" onclick="add(${product.id}, ${product.price})" class="btn-products">Add</button>
+                                                <button type="button" onclick="add(${product.name}, ${product.price}, ${product.description})" class="btn-products">Add</button>
                                             </div>
                                             `;
         })
@@ -259,7 +246,7 @@ btnProducts.addEventListener("click", () => {
                                                 <p>${product.price}</p>
                                                 <p>${product.description}</p>
                                                 <input type="number" id="product-quantity" class="input-products" name="product-quantity" value="1" min="1"></input>   
-                                                <button type="button" onclick="add(${product.id}, ${product.price})" class="btn-products">Add</button>
+                                                <button type="button" onclick="add(${product.name}, ${product.price}, ${product.description})" class="btn-products">Add</button>
                                             </div>
                                             `;
         });
@@ -267,25 +254,36 @@ btnProducts.addEventListener("click", () => {
 })
 
 // Botón de carrito de compra
-btnShoppingCart.addEventListener("click", () => { // Necesito poder obtener mis productos del pedido actual. Supongo que se haria un obtener pedidos (el pedido actual) y de ahi los detalles del pedido.
+btnShoppingCart.addEventListener("click", () => {
     main.innerHTML = "";
-    main.innerHTML += `<div id="sc-main-frame">
-                            <div id=${1} class="row">
-                                <img id="sc-image" src=${"./media/Foundation.jpeg"} alt=${"My Foundation"}>
-                                <div id="sc-main-text">
-                                    <h5>${"My Foundation"}</h5>
-                                    <p class="text-sc-content">${"Expensive Foundation"}</p>
-                                </div>
-                            </div>
-                        </div>
+    main.innerHTML += `<div id="sc-main-frame"></div>
                         <div id="sc-secondary-frame">
                             <h3>Total</h3>
-                            <p id="total">${20}</p>
+                            <p id="total-quantity">0</p>
                             <button type="button" class="btn-sc">Buy</button>
                         </div>
                         `;
 
     const mainFrame = document.getElementById("sc-main-frame");
+    const totalQuantity = document.getElementById("total-quantity");
+
+    let total = 0;
+
+    shoppingCart.forEach(product => {
+        total += product.price * product.quantity;
+
+        mainFrame.innerHTML += `
+                                <div class="row">
+                                    <img id="sc-image" src=${"./media/Foundation.jpeg"} alt=${product.name}>
+                                    <div id="sc-main-text">
+                                        <h5>${product.name}</h5>
+                                        <p class="text-sc-content">${product.description}</p>
+                                    </div>
+                                </div>
+                                `;
+    })
+
+    totalQuantity.innerHTML = total;
 })
 
 // Botón del perfil de usuario
