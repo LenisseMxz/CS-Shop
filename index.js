@@ -12,6 +12,7 @@ const btnHome = document.getElementById("btn-home");
 const btnShoppingCart = document.getElementById("btn-shoppingcart");
 const btnAccount = document.getElementById("btn-account");
 
+<<<<<<< HEAD
 // Función de añadir al carrito
 function add(name, price, description) {
     quantity = document.getElementById("product-quantity").value;
@@ -22,6 +23,14 @@ function add(name, price, description) {
         description: description,
         quantity: quantity
     };
+=======
+
+async function add(id, price) {
+    let productId = id;
+    let productQuantity = document.getElementById("product-quantity").value;
+    let productPrice = price;
+
+>>>>>>> origin/Ale
 
     shoppingCart.push(product);
 

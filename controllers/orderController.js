@@ -19,6 +19,7 @@ exports.order_create_post = async (req, res) => {
     return res.json({message: "orden creada "}); //esto es para enviar la respuesta al cliente, que la orden se creo exitosamente
 };
 
+
 exports.order_user_list = async (req, res) => { 
     const id_user = req.user.id; //esto es para obtener el id del usuario que esta haciendo la consulta, que se obtiene el token por el middleware de autenticacion
 
@@ -27,8 +28,11 @@ exports.order_user_list = async (req, res) => {
     return res.json(rows); //esto es para enviar la respuesta al cliente, en formato json, que es un array de ordenes
 };
 
-exports.admin_client_list = async (req,res) => {
-    const sql = "SELECT * FROM users WHERE rol = 'customer'"; //esto es para obtener todos los usuarios que tienen el rol de customer, que son los clientes
-    const [rows] = await db.query(sql); //esto es para ejecutar la consulta y obtener el resultado, que es un array de clientes
-    return res.json(rows); //esto es para enviar la respuesta al cliente, en formato json, que es un array de clientes
+
+exports.admin_client_user = async (req,res) => { //esto es para que el admin pueda buscar a un cliente por su nombre, para poder ver sus ordenes
+    const {user} = req.params; //esto es para obtener el nombre que se va a buscar
+    
+    const sql = "SELECT * FROM users WHERE user ?AND rol ='customer'"; //esto es para obtener todos los usuarios que tienen el rol de customer, que son los clientes
+    const [rows] = await db.query(sql,[user]); //esto es para ejecutar la consulta y obtener el resultado, que es un array de clientes
+    return res.json(rows[0]); //esto es para enviar la respuesta de todos los datos del cliente que se encontro, en formato json
 };

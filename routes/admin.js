@@ -7,6 +7,6 @@ const orderController = require('../controllers/orderController'); //importamos 
 router.post('/products', verifyToken, productController.add_product); //ruta para agregar un nuevo producto
 router.put('/products/:id', verifyToken, productController.product_update); //ruta para actualizar un producto existente
 
-router.get('/clients', verifyToken, orderController.admin_client_list); //ruta para mostrar la lista de clientes
+router.get('/users/:username', verifyToken, orderController.admin_client_user); //ruta para mostrar la lista de clientes
 
 module.exports = router;
