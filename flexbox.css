@@ -57,11 +57,6 @@
     margin-right: 6%;
     margin-left: 6%;
 }
-#sc-main-cancel-button {
-    width: 2%;
-    height: 4%;
-    margin-top: 4%;
-}
 #sc-secondary-frame {
    padding-bottom: 2%;
 }
@@ -96,12 +91,6 @@
     border-style: solid; 
     border-left: 1px; 
     border-right: 1px
-}
-.input-sc {
-    width: 4%;
-    height: 20%;
-    margin-top: 4%;
-    margin-right: 60%;
 }
 .btn-account {
     margin: 1%;

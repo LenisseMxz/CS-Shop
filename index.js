@@ -1,6 +1,6 @@
 // Variables auxiliares
 let userToken = null;
-let userOrderId = null;
+let userOrderId = null; // NO SE AUN xd
 
 // Divs principales
 let message = document.getElementById("message");
@@ -65,12 +65,6 @@ function add(id, price) {
     });
 }
 
-// Función para cancelar *OPCIONAL*
-function cancel(id) {
-    // fetch DELETE que elimine el producto del pedido actual
-    document.getElementById(`${1}`).remove();
-}
-
 // Función para acceder
 function login() {
     main.innerHTML = "";
@@ -98,7 +92,7 @@ function login() {
         fetch('http://localhost:3000/api/auth/login', {
             method: 'POST',
             body: JSON.stringify({
-                user: username,
+                useF: username,
                 password: password,
             }),
             headers: {
@@ -109,7 +103,7 @@ function login() {
         .then(data => {
             console.log(data);
             if (data.message == "Login exitoso") {
-                fetch(`http://localhost:3000/api/client/users/${username}`) // Falta ruta para obtener los usuarios
+                fetch(`http://localhost:3000/api/clients/`) // Falta ruta para obtener un usuario determinado
                 .then(res => res.json())
                 .then(userData => {
                     console.log(userData);
@@ -121,8 +115,7 @@ function login() {
                                         `;
 
                     
-                    fetch(`http://localhost:3000/api/orders?id_user=${userData.id}`, { // Falta ruta para obtener los pedidos
-                        method: "GET",
+                    fetch(`http://localhost:3000/api/orders`, {
                         headers: {
                             "Authorization": `Bearer ${userToken}` // Paso el token para obtener los pedidos
                         },
@@ -130,35 +123,19 @@ function login() {
                     .then(res => res.json())
                     .then(orders => {
                         console.log(orders);
-                        if (orders !== null) { // Si existe algun pedido no completado *REFERENCIA SOLAMENTE*
-                            orders.forEach(order => { // Imprime los pedidos que tenga el usuario
-                                userOrderId = order.id;
-                                main.innerHTML += `
-                                                    <div id="account-secondary-frame">
-                                                        <h4>Order History</h4>
-                                                        <div class="row">
-                                                            <div id="sc-main-text">
-                                                                <h5>${"24-05-2026"}</h5>
-                                                                <p class="text-sc-content">$${450}</p>
-                                                            </div>
+                        orders.forEach(order => { // Imprime los pedidos que tenga el usuario
+                            main.innerHTML += `
+                                                <div id="account-secondary-frame">
+                                                    <h4>Order History</h4>
+                                                    <div class="row">
+                                                        <div id="sc-main-text">
+                                                            <h5>${"24-05-2026"}</h5>
+                                                            <p class="text-sc-content">$${450}</p>
                                                         </div>
                                                     </div>
-                                                    `;
-                            })
-                        } else {
-                            fetch("http://localhost:3000/api/orders", { // Falta ruta para crear un nuevo pedido
-                                method: "POST",
-                                headers: {
-                                    "Authorization": `Bearer ${userToken}`, // Paso token para la creacion de un nuevo pedido
-                                    "Content-Type": "application/json"
-                                }
-                            })
-                            .then(res => res.json())
-                            .then(order => {
-                                console.log(order);
-                                userOrderId = order; // aqui obtengo el id del pedido actual
-                            });
-                        }
+                                                </div>
+                                                `;
+                        })
                     });
                 });
             }
@@ -179,7 +156,7 @@ function register() {
                             </div>
                             <div class="div-account-container">
                                 <label>Repeat Password: </label>
-                                <input type="password" id="password" class="input-account" name="password"></input>
+                                <input type="password" id="repeat-password" class="input-account" name="repeat-password"></input>
                             </div>
                             <button type="button" id="btn-register" class="btn-account">Register</button>
                         </div>
@@ -188,18 +165,18 @@ function register() {
     const btnRegister = document.getElementById("btn-register");
 
     btnRegister.addEventListener("click", () => {
-        const username = document.getElementById("username");
-        const password = document.getElementById("password");
-        const repeatPassword = document.getElementById("repeatPassword");
-
-        main.innerHTML = "";
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const repeatPassword = document.getElementById("repeat-password").value;
+        
+        console.log(username, password, repeatPassword);
 
         fetch('http://localhost:3000/api/auth/register', {
             method: 'POST',
             body: JSON.stringify({
                 user: username,
                 password: password,
-                // Falta el repeat password
+                confirmPassword: repeatPassword
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -211,7 +188,7 @@ function register() {
             if (data.message == "usuario registrado") {
                 login(); // Entra para iniciar la sesion en automatico
             }
-        });
+        })
     })
 }
 
@@ -299,8 +276,6 @@ btnShoppingCart.addEventListener("click", () => { // Necesito poder obtener mis 
                                     <h5>${"My Foundation"}</h5>
                                     <p class="text-sc-content">${"Expensive Foundation"}</p>
                                 </div>
-                                <input type="number" id="sc-quantity" class="input-sc" name="sc-quantity" value=${"1"} min="1"></input>
-                                <button type="button" id="sc-main-cancel-button" class="btn-sc" onclick="cancel(${orderDetails.id})">X</button>
                             </div>
                         </div>
                         <div id="sc-secondary-frame">
