@@ -3,7 +3,6 @@ let userToken = null;
 let shoppingCart = [];
 let total = 0;
 
-
 // Divs principales
 let message = document.getElementById("message");
 let main = document.getElementById("main");
@@ -16,7 +15,7 @@ const btnAccount = document.getElementById("btn-account");
 
 // Función de añadir al carrito
 function add(id, name, price, description) {
-    quantity = document.getElementById("product-quantity").value;
+    quantity = document.getElementById(`product${id}-quantity`).value;
     console.log(quantity);
 
     const product = {
@@ -250,7 +249,7 @@ btnProducts.addEventListener("click", () => {
                                                 <img class="img-products" src=${"./media/Foundation.jpeg"} alt=${product.name}>
                                                 <p>${product.price}</p>
                                                 <p>${product.description}</p>
-                                                <input type="number" id="product-quantity" class="input-products" name="product-quantity" value="1" min="1"></input>   
+                                                <input type="number" id="product${product.id}-quantity" class="input-products" name="product-quantity" value="1" min="1"></input>   
                                                 <button type="button" onclick="add(${product.id}, '${product.name}', ${product.price}, '${product.description}')" class="btn-products">Add</button>
                                             </div>
                                             `;
@@ -314,6 +313,7 @@ btnShoppingCart.addEventListener("click", () => {
                                     <div id="sc-main-text">
                                         <h5>${product.name}</h5>
                                         <p class="text-sc-content">${product.description}</p>
+                                        <p>${product.qty}</p>
                                     </div>
                                 </div>
                                 `;
