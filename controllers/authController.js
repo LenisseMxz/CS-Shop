@@ -22,14 +22,14 @@ exports.register_post = async (req, res) => {
 }
 
 exports.login_post = async (req, res) => {
-    const {useF, password} = req.body;  //obtenemos los datos que ingreso el usuario
+    const {userF, password} = req.body;  //obtenemos los datos que ingreso el usuario
 
     if(!userF || !password){     //validamos que el usuario haya registrado los dos campos
         return res.json({message: "llena todos los campos"}); 
     }
 
     const sql = "SELECT * FROM users WHERE user = ?"; //esto es para buscar el usuario en la base de datos
-    const [rows] = await db.query(sql, [user]); //esto es para ejecutar la consulta y obtener el resultado
+    const [rows] = await db.query(sql, [userF]); //esto es para ejecutar la consulta y obtener el resultado
 
     if(rows.length === 0){   //si no se encuentra el usuario, se envia error
         return res.json({message: "usuario no encontrado"});
@@ -49,7 +49,7 @@ exports.login_post = async (req, res) => {
     return res.json({   //
         message: "Login exitoso",
         token: token,
-        rol: user.rol
-    
+        rol: user.rol,
+        name: user.user
     });
 };

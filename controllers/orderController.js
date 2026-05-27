@@ -5,18 +5,18 @@ exports.order_create_post = async (req, res) => {
     const id_user = req.user.id; //es para obtener el id del usuario que esta haciendo la orden, que se obtiene el token por el middleware de autenticacion, me explico? xd
     const {total_price, products} = req.body; //esto es para obtener el total de la orden y los productos que se van a comprar, que se envia desde el frontend
 
-    const sql = "INSERT INTO orders (id, id_user, total_price) VALUES (?, ?, ?)"; //esto es para insertar la nueva orden en la base de datos, con el id del usuario y el total de la orden
+    const sql = "INSERT INTO orders (id_user, total_price) VALUES (?, ?)"; //esto es para insertar la nueva orden en la base de datos, con el id del usuario y el total de la orden
     const [result] = await db.query(sql,[id_user, total_price]); //esto es para ejecutar la consulta y obtener el resultado, que es el id de la nueva orden que se acaba de crear
 
     const id_order = result.insertId; //esto es para preguntarle a la bd que id se le asigno a la orden
 
     for(let i = 0; i < products.length; i++){ //esto es para recorrer el array de productos que se van a comprar y agregar cada producto a la tabla order_products, que es la tabla que relaciona las ordenes con los productos y tambien para actualizar la cantidad de productos en la tabla products
         const product = products[i]; //esto es para obtener el producto actual del array
-        const sql = "INSERT INTO order_products (id_order, id_product, qty, idividual_price) VALUES (?, ?, ?, ?)"; //esto es para insertar el producto en la tabla order_products, con el id de la orden, el id del producto y la cantidad que se va a comprar
-        await db.query(sql, [id_order, product.id, product.qty, product.individual_price]); //esto es para ejecutar la consulta y agregar el producto a la tabla order_products
+        const sql = "INSERT INTO order_details (id_order, id_product, qty, individual_price) VALUES (?, ?, ?, ?)"; //esto es para insertar el producto en la tabla order_products, con el id de la orden, el id del producto y la cantidad que se va a comprar
+        await db.query(sql, [id_order, product.id, product.qty, product.price]); //esto es para ejecutar la consulta y agregar el producto a la tabla order_products
     }
 
-    return res.json({message: "orden creada "}); //esto es para enviar la respuesta al cliente, que la orden se creo exitosamente
+    return res.json({message: "orden creada"}); //esto es para enviar la respuesta al cliente, que la orden se creo exitosamente
 };
 
 

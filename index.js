@@ -1,6 +1,8 @@
 // Variables auxiliares
 let userToken = null;
 let shoppingCart = [];
+let total = 0;
+
 
 // Divs principales
 let message = document.getElementById("message");
@@ -12,25 +14,18 @@ const btnHome = document.getElementById("btn-home");
 const btnShoppingCart = document.getElementById("btn-shoppingcart");
 const btnAccount = document.getElementById("btn-account");
 
-<<<<<<< HEAD
 // Función de añadir al carrito
-function add(name, price, description) {
+function add(id, name, price, description) {
     quantity = document.getElementById("product-quantity").value;
+    console.log(quantity);
 
     const product = {
+        id: id,
         name: name,
         price: price,
         description: description,
-        quantity: quantity
+        qty: quantity
     };
-=======
-
-async function add(id, price) {
-    let productId = id;
-    let productQuantity = document.getElementById("product-quantity").value;
-    let productPrice = price;
-
->>>>>>> origin/Ale
 
     shoppingCart.push(product);
 
@@ -61,6 +56,37 @@ async function add(id, price) {
     }, 3500);
 }
 
+function buy() {
+    fetch('http://localhost:3000/api/client/orders', {
+        method: 'POST',
+        body: JSON.stringify({
+            total_price: total,
+            products: shoppingCart
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            "Authorization": `Bearer ${userToken}`
+        },
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+        if (data.message == "orden creada") {
+            console.log("xd");
+            shoppingCart = [];
+            let total = 0;
+            main.innerHTML = `
+                            <div id="sc-main-frame"></div>
+                            <div id="sc-secondary-frame">
+                                <h3>Total</h3>
+                                <p id="total-quantity">0</p>
+                                <button type="button" onclick="buy()" class="btn-sc">Buy</button>
+                            </div> 
+                            `;
+        }
+    })
+}
+
 // Función para acceder
 function login() {
     main.innerHTML = "";
@@ -80,15 +106,15 @@ function login() {
     const btnLogin = document.getElementById("btn-login");
 
     btnLogin.addEventListener("click", () => {
-        const username = document.getElementById("username");
-        const password = document.getElementById("password");
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
 
         main.innerHTML = "";
 
         fetch('http://localhost:3000/api/auth/login', {
             method: 'POST',
             body: JSON.stringify({
-                useF: username,
+                userF: username,
                 password: password,
             }),
             headers: {
@@ -96,43 +122,41 @@ function login() {
             },
         })
         .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if (data.message == "Login exitoso") {
-                fetch(`http://localhost:3000/api/clients/`) // Falta ruta para obtener un usuario determinado
+        .then(userData => {
+            console.log(userData);
+            userToken = userData.token;
+            if (userData.message == "Login exitoso") {
+
+                main.innerHTML += `
+                                    <div id="account-main-frame">
+                                        <h3>${userData.name}</h3>
+                                    </div>
+                                    <div id="account-secondary-frame">
+                                        <h4>Order History</h4>
+                                    </div>
+                                    `;
+
+                const secondaryFrame = document.getElementById("account-secondary-frame");
+
+                fetch(`http://localhost:3000/api/client/orders/history`, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${userToken}` // Paso el token para obtener los productos
+                    },
+                })
                 .then(res => res.json())
-                .then(userData => {
-                    console.log(userData);
-                    userToken = userData.token;
-
-                    main.innerHTML += `<div id="account-main-frame">
-                                        <h3>${userData.user}</h3>
-                                        </div>
-                                        `;
-
-                    
-                    fetch(`http://localhost:3000/api/orders`, {
-                        headers: {
-                            "Authorization": `Bearer ${userToken}` // Paso el token para obtener los pedidos
-                        },
-                    })
-                    .then(res => res.json())
-                    .then(orders => {
-                        console.log(orders);
-                        orders.forEach(order => { // Imprime los pedidos que tenga el usuario
-                            main.innerHTML += `
-                                                <div id="account-secondary-frame">
-                                                    <h4>Order History</h4>
+                .then(orders => {
+                    console.log(orders);
+                    orders.forEach(order => {
+                        secondaryFrame.innerHTML += `
                                                     <div class="row">
                                                         <div id="sc-main-text">
-                                                            <h5>${"24-05-2026"}</h5>
-                                                            <p class="text-sc-content">$${450}</p>
+                                                            <h5>${order.order_date}</h5>
+                                                            <p class="text-sc-content">$${order.total_price}</p>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                `;
-                        })
-                    });
+                                                    `;
+                    })
                 });
             }
         });
@@ -210,7 +234,7 @@ btnProducts.addEventListener("click", () => {
 
     const productsContainer = document.getElementById("products-container");
 
-    fetch('http://localhost:3000/api/products', {
+    fetch('http://localhost:3000/api/client/products', {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${userToken}` // Paso el token para obtener los productos
@@ -227,7 +251,7 @@ btnProducts.addEventListener("click", () => {
                                                 <p>${product.price}</p>
                                                 <p>${product.description}</p>
                                                 <input type="number" id="product-quantity" class="input-products" name="product-quantity" value="1" min="1"></input>   
-                                                <button type="button" onclick="add(${product.name}, ${product.price}, ${product.description})" class="btn-products">Add</button>
+                                                <button type="button" onclick="add(${product.id}, '${product.name}', ${product.price}, '${product.description}')" class="btn-products">Add</button>
                                             </div>
                                             `;
         })
@@ -238,26 +262,28 @@ btnProducts.addEventListener("click", () => {
     productSearcher.addEventListener("input", (e) => {
         const query = e.target.value;
 
-        fetch(`http://localhost:3000/api/products/search?name=${encodeURIComponent(query)}`, {
+        fetch(`http://localhost:3000/api/client/products/search?name=${encodeURIComponent(query)}`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${userToken}` // Paso el token para la busqueda de productos
             },
         })
         .then(res => res.json())
-        .then(product => {
-            console.log(product);
-            productsContainer.innerHTML = "";
-            productsContainer.innerHTML = `
-                                            <div class="div-products">
-                                                <h4>${product.name}</h4>
-                                                <img class="img-products" src=${"./media/Foundation.jpeg"} alt=${product.name}>
-                                                <p>${product.price}</p>
-                                                <p>${product.description}</p>
-                                                <input type="number" id="product-quantity" class="input-products" name="product-quantity" value="1" min="1"></input>   
-                                                <button type="button" onclick="add(${product.name}, ${product.price}, ${product.description})" class="btn-products">Add</button>
-                                            </div>
-                                            `;
+        .then(products => {
+            console.log(products);
+            products.forEach(product => {
+                productsContainer.innerHTML = "";
+                productsContainer.innerHTML = `
+                                    <div class="div-products">
+                                        <h4>${product.name}</h4>
+                                        <img class="img-products" src=${"./media/Foundation.jpeg"} alt=${product.name}>
+                                        <p>${product.price}</p>
+                                        <p>${product.description}</p>
+                                        <input type="number" id="product-quantity" class="input-products" name="product-quantity" value="1" min="1"></input>   
+                                        <button type="button" onclick="add(${product.id}, '${product.name}', ${product.price}, '${product.description}')" class="btn-products">Add</button>
+                                    </div>
+                                    `;
+            })
         });
     })
 })
@@ -269,17 +295,18 @@ btnShoppingCart.addEventListener("click", () => {
                         <div id="sc-secondary-frame">
                             <h3>Total</h3>
                             <p id="total-quantity">0</p>
-                            <button type="button" class="btn-sc">Buy</button>
+                            <button type="button" onclick="buy()" class="btn-sc">Buy</button>
                         </div>
                         `;
 
     const mainFrame = document.getElementById("sc-main-frame");
     const totalQuantity = document.getElementById("total-quantity");
 
-    let total = 0;
-
-    shoppingCart.forEach(product => {
-        total += product.price * product.quantity;
+    total = 0;
+    
+    shoppingCart.forEach(product => 
+        {
+        total += product.price * product.qty;
 
         mainFrame.innerHTML += `
                                 <div class="row">
