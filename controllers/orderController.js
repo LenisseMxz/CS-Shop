@@ -23,7 +23,7 @@ exports.order_create_post = async (req, res) => {
 exports.order_user_list = async (req, res) => { 
     const id_user = req.user.id; //esto es para obtener el id del usuario que esta haciendo la consulta, que se obtiene el token por el middleware de autenticacion
 
-    const sql = "SELECT o.total_price, od.qty, od.individual_price, p.name AS product_name, p.description FROM orders o INNER JOIN order_details od ON o.id = od.id_order INNER JOIN products p ON od.id_product = p.id WHERE o.id_user = ? ORDER BY o.order_date DESC"; //esto es para obtener todas las ordenes del usuario que esta haciendo la consulta, con el total de la orden, la cantidad de cada producto, el precio individual de cada producto, el nombre y la descripcion de cada producto, haciendo un inner join entre las tablas orders, order_details y products y las palabritas esas son los apodos para no estar escribiendo el nombre completo todo el rato
+    const sql = "SELECT total_price, order_date FROM orders WHERE id_user = ? ORDER BY order_date DESC";
     const [rows] = await db.query(sql, [id_user]); //esto es para ejecutar la consulta y obtener el resultado, que es un array de ordenes
     return res.json(rows); //esto es para enviar la respuesta al cliente, en formato json, que es un array de ordenes
 };
