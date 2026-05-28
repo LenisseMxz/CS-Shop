@@ -71,7 +71,6 @@ function buy() {
     .then(data => {
         console.log(data);
         if (data.message == "orden creada") {
-            console.log("xd");
             shoppingCart = [];
             let total = 0;
             main.innerHTML = `
