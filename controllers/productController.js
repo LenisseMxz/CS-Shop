@@ -13,12 +13,19 @@ exports.product_list = async (req, res) => {   //esto es para mostrar el catalog
 exports.product_search = async (req, res) => { //esto es para buscar un producto por su nombre, tanto para admin como para user
 
     const {name} = req.query; //esto es para obtener el nombre del producto que se quiere buscar, se usa req.query porque se envia como parametro en la url, ya te la sabes mas que yo xd
+    if(name) {
 
     const sql = "SELECT * FROM products WHERE name LIKE ?"; //esto es para buscar el producto en la base de datos, se usa LIKE para que busque por coincidencia, y el ? es para evitar inyeccion sql
-
     const [rows] = await db.query(sql, [`%${name}%`]); //esto es para ejecutar la consulta y obtener el resultado, se usa % para que busque por coincidencia en cualquier parte del nombre
 
-    return res.json(rows); //esto es para enviar el resultado al cliente en formato json
+    return res.json(rows);
+
+    } else {
+        const sqlAll = "SELECT * FROM products"; //esto es para obtener todos los productos de la base de datos, en caso de que no se envie un nombre para buscar o no se encuentre
+
+        const [allRows] = await db.query(sqlAll); //esto es para ejecutar la consulta y obtener el resultado, que es un array de todos los productos
+        return res.json(allRows); //esto es para enviar el resultado al cliente en formato json, que es un array de todos los productos
+    }
 };
 
 //para los admins
